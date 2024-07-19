@@ -25,17 +25,12 @@ class CustomDrawer extends ConsumerWidget {
             ),
           ),
           ListTile(
-            leading: Icon(
-              Icons.home,
-            ),
-            title: Text('Home'),
-          ),
-          ListTile(
             leading: const FaIcon(
               FontAwesomeIcons.book,
             ),
             title: Text('Browse'),
             onTap: () {
+              Scaffold.of(context).closeDrawer();
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -48,6 +43,7 @@ class CustomDrawer extends ConsumerWidget {
             leading: FaIcon(FontAwesomeIcons.plus),
             title: Text('Add Word'),
             onTap: () {
+              Scaffold.of(context).closeDrawer();
               Navigator.push(
                 context,
                 MaterialPageRoute(

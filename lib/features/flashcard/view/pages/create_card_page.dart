@@ -11,6 +11,7 @@ import 'package:client/features/flashcard/viewmodel/flashcard_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CreateCardPage extends ConsumerStatefulWidget {
   const CreateCardPage({super.key});
@@ -67,6 +68,16 @@ class _CreateCardPageState extends ConsumerState<CreateCardPage> {
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(56),
           child: CustomAppBar(
+            leading: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Builder(builder: (context) {
+                return GestureDetector(
+                    onTap: () => Navigator.of(context).pop(),
+                    child: const FaIcon(FontAwesomeIcons.arrowLeft));
+              })
+            ],
+          ),
             title: 'Create Card',
             actions: selectedWordType != null
                 ? [

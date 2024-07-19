@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 class CustomAppBar extends StatelessWidget {
   final String title;
   final List<Widget>? actions;
-  const CustomAppBar({super.key, required this.title, this.actions});
+  final Widget? leading;
+  const CustomAppBar({super.key, required this.title, this.actions, this.leading});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      // automaticallyImplyLeading: false,
+      leading: leading,
+      automaticallyImplyLeading: false,
       actions: actions,
       title: Text(title),
       backgroundColor: Theme.of(context).colorScheme.primary,

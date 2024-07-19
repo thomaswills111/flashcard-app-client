@@ -4,6 +4,7 @@ import 'package:client/features/flashcard/models/card_model.dart';
 import 'package:client/features/flashcard/viewmodel/flashcard_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BrowsePage extends ConsumerStatefulWidget {
   const BrowsePage({super.key});
@@ -33,9 +34,19 @@ class _BrowsePageState extends ConsumerState<BrowsePage> {
           loading: () {});
     });
     return Scaffold(
-      appBar: const PreferredSize(
+      appBar: PreferredSize(
         preferredSize: Size.fromHeight(56),
         child: CustomAppBar(
+          leading: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Builder(builder: (context) {
+                return GestureDetector(
+                    onTap: () => Navigator.of(context).pop(),
+                    child: FaIcon(FontAwesomeIcons.arrowLeft));
+              })
+            ],
+          ),
           title: 'Browse Words',
         ),
       ),
@@ -101,9 +112,11 @@ class _BrowsePageState extends ConsumerState<BrowsePage> {
     if (value.isEmpty) {
       searchResults = notifier.allCards;
     } else {
-      searchResults = notifier.allCards.where((element) =>
-      element.english.toLowerCase().contains(value.toLowerCase())
-      || element.greek.toLowerCase().contains(value.toLowerCase())).toList();
+      searchResults = notifier.allCards
+          .where((element) =>
+              element.english.toLowerCase().contains(value.toLowerCase()) ||
+              element.greek.toLowerCase().contains(value.toLowerCase()))
+          .toList();
     }
 
     setState(() {
